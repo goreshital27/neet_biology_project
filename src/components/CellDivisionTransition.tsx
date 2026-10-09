@@ -105,3 +105,4 @@ export function CellDivisionTransition({ children }: CellDivisionTransitionProps
     </AnimatePresence>
   )
 }
+

@@ -64,3 +64,4 @@ export const CHAPTER_BACKGROUND_CONFIGS: Record<string, ChapterBackgroundConfig>
 export function getBackgroundConfigForChapter(chapterId = 'cell-cycle'): ChapterBackgroundConfig {
   return CHAPTER_BACKGROUND_CONFIGS[chapterId] ?? CHAPTER_BACKGROUND_CONFIGS['cell-cycle']
 }
+

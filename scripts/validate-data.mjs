@@ -199,3 +199,4 @@ if (errors.length > 0) {
   console.log('🎉 All NEET data passed validation successfully!\n')
   process.exit(0)
 }
+

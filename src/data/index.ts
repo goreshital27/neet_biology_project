@@ -41,3 +41,4 @@ export function getConceptFrequencies(chapterId = 'cell-cycle'): ConceptFrequenc
     }
   })
 }
+

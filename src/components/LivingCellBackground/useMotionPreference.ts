@@ -48,3 +48,4 @@ export const useMotionStore = create<MotionState>((set) => ({
     set({ motionEnabled: enabled })
   },
 }))
+

@@ -36,3 +36,4 @@ export function SampleDataBadge({ className = '', size = 'sm' }: SampleDataBadge
     </span>
   )
 }
+
