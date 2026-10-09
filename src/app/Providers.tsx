@@ -12,3 +12,4 @@ interface ProvidersProps {
 export function Providers({ children }: ProvidersProps) {
   return <BrowserRouter>{children}</BrowserRouter>
 }
+

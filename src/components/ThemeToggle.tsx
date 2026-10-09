@@ -2,13 +2,6 @@ import { useEffect, useState } from 'react'
 
 type Theme = 'light' | 'dark'
 
-function getSystemTheme(): Theme {
-  if (typeof window === 'undefined') return 'dark'
-  return window.matchMedia('(prefers-color-scheme: light)').matches
-    ? 'light'
-    : 'dark'
-}
-
 function getStoredTheme(): Theme | null {
   try {
     const stored = localStorage.getItem('nbs-theme')
@@ -29,10 +22,11 @@ function setStoredTheme(theme: Theme) {
 
 /**
  * Theme toggle button.
- * Persists choice to localStorage; falls back to system preference.
+ * Defaults to dark theme (bioluminescent palette, spec §7);
+ * persists user choice to localStorage.
  */
 export function ThemeToggle() {
-  const [theme, setTheme] = useState<Theme>(() => getStoredTheme() ?? getSystemTheme())
+  const [theme, setTheme] = useState<Theme>(() => getStoredTheme() ?? 'dark')
 
   useEffect(() => {
     const root = document.documentElement
@@ -79,3 +73,4 @@ export function ThemeToggle() {
     </button>
   )
 }
+
