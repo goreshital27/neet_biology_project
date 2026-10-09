@@ -1,0 +1,72 @@
+[
+  {
+    "id": "note-cell-cycle-overview",
+    "conceptId": "cell-cycle-overview",
+    "chapterId": "cell-cycle",
+    "title": "Cell Cycle Overview & G0 Phase",
+    "keyTakeaways": [
+      "Sequence of events: G1 → S → G2 → M phase.",
+      "Interphase accounts for >95% of total cycle duration; M phase takes <5%.",
+      "G0 (quiescent phase): cells withdraw from cycling yet maintain cellular metabolism."
+    ],
+    "examAlert": "G0 cells remain metabolically active, not dead or inactive.",
+    "quickReviseSummary": "The cycle coordinates replication and division. Differentiated non-cycling cells rest in metabolically active G0.",
+    "isSample": true
+  },
+  {
+    "id": "note-s-phase",
+    "conceptId": "cell-cycle-s-phase",
+    "chapterId": "cell-cycle",
+    "title": "S Phase (Synthesis Phase)",
+    "keyTakeaways": [
+      "Nuclear DNA replicates: content doubles from 2C to 4C.",
+      "Chromosome count remains identical (2n).",
+      "Centrosome (centriole pair) duplicates in the cytoplasm simultaneously."
+    ],
+    "examAlert": "Amount of DNA doubles (2C → 4C), but chromosome number does NOT double.",
+    "quickReviseSummary": "S phase duplicates DNA (2C to 4C) and cytoplasmic centrioles while conserving chromosome ploidy (2n).",
+    "isSample": true
+  },
+  {
+    "id": "note-metaphase",
+    "conceptId": "mitosis-metaphase",
+    "chapterId": "cell-cycle",
+    "title": "Metaphase Mechanics",
+    "keyTakeaways": [
+      "Chromosomes attain maximal condensation; best stage for morphological study.",
+      "Spindle fibers attach to protein kinetochores on sister chromatids.",
+      "Chromosomes line up along equatorial metaphase plate."
+    ],
+    "examAlert": "Metaphase is the benchmark stage to analyze chromosome count, shape, and structure.",
+    "quickReviseSummary": "Maximal compaction, equatorial alignment at the metaphase plate, and dual kinetochore spindle docking.",
+    "isSample": true
+  },
+  {
+    "id": "note-anaphase",
+    "conceptId": "mitosis-anaphase",
+    "chapterId": "cell-cycle",
+    "title": "Anaphase Segregation",
+    "keyTakeaways": [
+      "Centromeres split simultaneously.",
+      "Sister chromatids separate into daughter chromosomes.",
+      "Centromeres lead toward poles while chromosome arms trail."
+    ],
+    "examAlert": "Centromere cleavage marks the transition from metaphase to anaphase.",
+    "quickReviseSummary": "Centromeres split concurrently, and daughter chromosomes diverge to opposing poles with arms trailing behind.",
+    "isSample": true
+  },
+  {
+    "id": "note-meiosis-pachytene",
+    "conceptId": "meiosis-pachytene",
+    "chapterId": "cell-cycle",
+    "title": "Pachytene & Genetic Recombination",
+    "keyTakeaways": [
+      "Substage of Prophase I following zygotene synapsis.",
+      "Recombination nodules form between non-sister chromatids.",
+      "Recombinase-catalyzed crossing over produces new genetic combinations."
+    ],
+    "examAlert": "Recombination involves non-sister chromatids of homologous chromosomes and requires the enzyme recombinase.",
+    "quickReviseSummary": "Non-sister chromatids of homologous bivalents exchange genetic segments via recombinase, generating diversity.",
+    "isSample": true
+  }
+]

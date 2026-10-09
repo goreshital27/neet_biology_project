@@ -1,0 +1,82 @@
+[
+  {
+    "id": "cell-cycle-overview",
+    "chapterId": "cell-cycle",
+    "title": "Cell Cycle Overview & G0 Phase",
+    "summary": "An orderly sequence of coordinated events where a cell duplicates its genome, synthesizes cellular components, and partitions into two progeny cells. Quiescent cells enter G0 to remain metabolically active without cycling.",
+    "stageIndex": 0,
+    "neetAlert": "Cells in the quiescent G0 stage remain metabolically active and functional, but suspend proliferation unless prompted by specific physiological triggers."
+  },
+  {
+    "id": "cell-cycle-g1-phase",
+    "chapterId": "cell-cycle",
+    "title": "G1 Phase (First Gap)",
+    "summary": "The growth interval separating mitotic exit from the start of DNA synthesis, marked by intense metabolic activity, transcription, and organelle enlargement prior to replication.",
+    "stageIndex": 1,
+    "neetAlert": "During G1, the cell grows continuously and is metabolically active, but genomic DNA synthesis has not yet initiated."
+  },
+  {
+    "id": "cell-cycle-s-phase",
+    "chapterId": "cell-cycle",
+    "title": "S Phase (Synthesis Phase)",
+    "summary": "The critical period during interphase where nuclear DNA replicates while centrosomes duplicate within the cytoplasm. DNA quantity doubles from 2C to 4C, while chromosome ploidy remains unchanged at 2n.",
+    "stageIndex": 2,
+    "neetAlert": "DNA content per cell doubles (2C to 4C), but the chromosome number remains unchanged (2n). Centriole duplication in the cytoplasm coincides with nuclear DNA replication."
+  },
+  {
+    "id": "cell-cycle-g2-phase",
+    "chapterId": "cell-cycle",
+    "title": "G2 Phase (Second Gap)",
+    "summary": "The post-synthetic gap phase wherein the cell prepares for mitotic division by synthesizing critical proteins like tubulin, enlarging further, and verifying replication fidelity.",
+    "stageIndex": 3,
+    "neetAlert": "Tubulin and essential spindle proteins are synthesized during G2 as the cell finalizes preparations for mitotic division."
+  },
+  {
+    "id": "mitosis-prophase",
+    "chapterId": "cell-cycle",
+    "title": "Prophase — Condensation & Spindle Setup",
+    "summary": "The initial mitotic stage featuring chromatin condensation into defined sister chromatids, centrosome migration to opposite cellular poles, and disassembly of the nuclear envelope, nucleolus, and ER.",
+    "stageIndex": 4,
+    "neetAlert": "Centrosomes begin traveling toward opposite poles; nucleolus, Golgi complex, and nuclear envelope dissociate completely by late prophase."
+  },
+  {
+    "id": "mitosis-metaphase",
+    "chapterId": "cell-cycle",
+    "title": "Metaphase — Equatorial Alignment",
+    "summary": "Chromosomes achieve maximum compaction and align along the cell's equatorial plane, with kinetochores on sister chromatids anchored to spindle microtubules radiating from opposite poles.",
+    "stageIndex": 5,
+    "neetAlert": "Metaphase is the optimal stage to analyze chromosome morphology; spindle fibers dock directly onto proteinaceous kinetochore discs on the centromere."
+  },
+  {
+    "id": "mitosis-anaphase",
+    "chapterId": "cell-cycle",
+    "title": "Anaphase — Centromere Splitting & Migration",
+    "summary": "Centromeres cleave simultaneously, freeing sister chromatids to become independent daughter chromosomes pulled toward opposing poles, driven by kinetochore microtubule shortening.",
+    "stageIndex": 6,
+    "neetAlert": "Centromeres split simultaneously; daughter chromosomes travel toward opposite poles with their centromeres oriented toward the lead."
+  },
+  {
+    "id": "mitosis-telophase",
+    "chapterId": "cell-cycle",
+    "title": "Telophase — Decondensation & Nuclear Reassembly",
+    "summary": "Daughter chromosomes assemble at the respective poles, uncoil into diffuse chromatin, and become enclosed by newly reformed nuclear envelopes alongside reemerging nucleoli and endomembrane systems.",
+    "stageIndex": 7,
+    "neetAlert": "Chromosomes forfeit their discrete structural individuality; the nuclear envelope, nucleolus, and cytoplasmic organelles reassemble."
+  },
+  {
+    "id": "cytokinesis",
+    "chapterId": "cell-cycle",
+    "title": "Cytokinesis — Cytoplasmic Partitioning",
+    "summary": "The terminal physical separation of the cytoplasm into two daughter cells, occurring via centripetal plasma membrane furrowing in animal cells and centrifugal cell plate formation in plant cells.",
+    "stageIndex": 8,
+    "neetAlert": "Animal cytokinesis proceeds centripetally through an inward-constricting furrow, whereas plant cytokinesis advances centrifugally through a growing cell plate."
+  },
+  {
+    "id": "meiosis-pachytene",
+    "chapterId": "cell-cycle",
+    "title": "Meiosis I: Pachytene & Crossing Over",
+    "summary": "A high-stakes meiotic prophase I substage where non-sister chromatids of synapsed homologous chromosomes undergo reciprocal genetic exchange mediated by the enzyme recombinase.",
+    "stageIndex": 9,
+    "neetAlert": "Crossing over transpires between non-sister chromatids of homologous chromosomes and is catalyzed by the recombinase enzyme complex."
+  }
+]

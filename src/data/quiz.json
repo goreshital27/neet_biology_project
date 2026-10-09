@@ -1,0 +1,77 @@
+[
+  {
+    "id": "quiz-cc-1",
+    "question": "A cell starts with 2n = 24 chromosomes and enters S phase. After complete division via mitosis, how many chromosomes and what DNA content will each daughter cell possess?",
+    "options": [
+      "2n = 24 with 2C DNA",
+      "2n = 12 with 1C DNA",
+      "2n = 24 with 4C DNA",
+      "2n = 48 with 2C DNA"
+    ],
+    "correctIndex": 0,
+    "explanation": "Mitosis is an equational division. DNA doubles in S phase (2C to 4C) and is equally apportioned between the two daughter cells during anaphase, restoring the diploid complement 2n = 24 and initial 2C DNA content.",
+    "conceptId": "cell-cycle-s-phase",
+    "difficulty": "medium",
+    "isSample": true
+  },
+  {
+    "id": "quiz-cc-2",
+    "question": "At which mitotic checkpoint or stage do kinetochores on sister chromatids attach to spindle microtubules from opposite poles?",
+    "options": [
+      "Prophase",
+      "Metaphase",
+      "Anaphase",
+      "Telophase"
+    ],
+    "correctIndex": 1,
+    "explanation": "Bi-orientation occurs by metaphase: spindle microtubules connect to opposing kinetochores located on the centromeric region of each paired sister chromatid.",
+    "conceptId": "mitosis-metaphase",
+    "difficulty": "easy",
+    "isSample": true
+  },
+  {
+    "id": "quiz-cc-3",
+    "question": "Which enzyme complex is essential for the crossing over event occurring during pachytene?",
+    "options": [
+      "DNA Ligase alone",
+      "Recombinase",
+      "RNA Polymerase II",
+      "Topoisomerase II"
+    ],
+    "correctIndex": 1,
+    "explanation": "Crossing over in pachytene is an enzyme-mediated process catalyzed by the recombinase enzyme complex, leading to exchange of genetic material.",
+    "conceptId": "meiosis-pachytene",
+    "difficulty": "easy",
+    "isSample": true
+  },
+  {
+    "id": "quiz-cc-4",
+    "question": "What is the primary difference in cytokinesis between typical animal and plant cells?",
+    "options": [
+      "Plant cells divide centripetally; animal cells divide centrifugally",
+      "Plant cells divide centrifugally via a cell plate; animal cells divide centripetally via a cleavage furrow",
+      "Animal cells synthesize pectin walls between daughter nuclei",
+      "Plant cells disassemble the spindle apparatus during G1"
+    ],
+    "correctIndex": 1,
+    "explanation": "Due to rigid walls, plant cells form a cell plate centrifugally from the interior outward. Animal cells lack cell walls and pinch inward centripetally via an actomyosin contractile ring.",
+    "conceptId": "cytokinesis",
+    "difficulty": "medium",
+    "isSample": true
+  },
+  {
+    "id": "quiz-cc-5",
+    "question": "Cells in heart muscle or neurons that do not divide further are suspended in which phase?",
+    "options": [
+      "Active G1 phase",
+      "Quiescent G0 phase",
+      "Extended S phase",
+      "Late M phase"
+    ],
+    "correctIndex": 1,
+    "explanation": "Differentiated adult cells that divide rarely or never enter the quiescent G0 state. They remain metabolically active but do not proliferate under ordinary circumstances.",
+    "conceptId": "cell-cycle-overview",
+    "difficulty": "easy",
+    "isSample": true
+  }
+]
