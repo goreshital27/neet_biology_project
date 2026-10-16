@@ -109,20 +109,81 @@
 - ✅ Desktop & Mobile (360px) layout verified (no horizontal scroll, 44px tap targets)
 - ✅ Performance budget respected: sprite blitting, capped DPR, paused on background tabs
 
+- ✅ Performance budget respected: sprite blitting, capped DPR, paused on background tabs
+
 ---
 
-## 🔜 Slice 3: 3D Lesson Player (Next)
+## ✅ Slice 3A: Mitosis Video Lesson & Dynamic PYQ Overlays (Complete)
 
-### What it will include
-- Three.js via `@react-three/fiber` and `@react-three/drei`
-- ONE 3D model with 3 working stages (e.g. Prophase, Metaphase, Anaphase)
-- Stage controller (next, back, scrub controls)
-- Label and one-line explanation per stage
-- Keyboard and touch support
-- Low-power static fallback image when WebGL is weak or unavailable
+**Date:** 2026-10-17
+
+### What was built
+1. **Mitosis Video Player Component** (`src/features/lesson/VideoPlayer.tsx`):
+   - Native `<video>` embedding `public/videos/mitosis-lesson.mp4` (20s, 1280x720, 24fps)
+   - `preload="metadata"`, `playsInline`, `controls`, and no autoplay with sound
+   - Strictly uncropped presentation (`aspect-video object-contain`) to preserve the corner mark
+   - Discreet "Visuals generated with AI" badge near the player
+   - Prominent Mute/Unmute button with SVG state indicators and keyboard focus states
+   - Graceful "Video coming soon" fallback card displayed on loading error or missing video file
+   - Timing Helper (?debug in URL): displays live timestamp (`⏱ 12.3s / 20.0s`), "Copy time (M)" button, and global `M` key shortcut copying to clipboard with confirmation toast
+
+2. **Dynamic PYQ Overlays & Card Component** (`src/features/lesson/PyqOverlayCard.tsx`):
+   - Synchronized card presentation sliding in at `startSec` and out at `endSec` (fading when `prefers-reduced-motion` is active)
+   - 4-choice MCQ interface with accessible radio semantics, visible focus rings, and ≥44px tap targets
+   - "Pause and try" button: pauses video playback to let the student select an option calmly
+   - Immediate option evaluation upon selection: green/teal border + "✓ Correct Answer" label, or rose/red + "✗ Your Choice", plus detailed biological rationale box
+   - "Continue" button appearing after answer selection to seamlessly resume video playback
+   - Automatic answer reveal at `revealAnswerAtSec` if not answered beforehand, using text labels as well as colour
+   - Badges: "Sample question" badge on sample items, and "NEET <year> • <paper>" on real exam questions
+   - "Asked in X of 5 papers" frequency tag: computed strictly from `questions.json` by counting distinct years of non-sample questions; hidden when no non-sample questions exist
+   - Standby mode when no overlay is active: lists all upcoming question checkpoints with direct "Jump →" seek buttons
+   - Accessibility: ARIA region `aria-label="NEET Past-Year Questions Panel"` with `aria-live="polite"` announcing new cards to screen readers; WCAG AA contrast
+
+3. **Interactive Chapter List** (`src/features/lesson/ChapterList.tsx`):
+   - 12 MITOSIS stages: Interphase (0s), Prophase (2s), Metaphase (3.8s), Anaphase (5.5s), Daughter cells (7s), Recap (8.8s), Interphase (10.3s), Prophase (12s), Prometaphase (13.7s), Metaphase (15.2s), Anaphase (16.8s), Telophase and cytokinesis (18.3s)
+   - Formatted timestamps (`0:00`, `0:02`, `0:15.2`) and active stage highlighted with glowing border
+   - Direct click-to-seek seeking video to `chapter.startSec`
+
+4. **Lesson Orchestration & Responsive Layout** (`src/features/lesson/MitosisVideoLesson.tsx` & `src/app/pages/LessonPage.tsx`):
+   - Desktop (≥1024px): 2-column layout with video & chapters on the left (~65% width) and PYQ panel on the right (~35% width)
+   - Mobile (<1024px): single-column stacked layout where the PYQ card sits directly under the video, followed by the chapter list
+   - 360px viewport: zero horizontal scroll verified (`scrollWidth === clientWidth`)
+   - Frame-accurate time tracking using `requestVideoFrameCallback` with `requestAnimationFrame` fallback and a 0.04s frame boundary quantization tolerance for 24fps media
+
+5. **Data Layer & Validation Suite** (`src/data/videos.json`, `src/data/questions.json`, `scripts/validate-data.mjs`):
+   - Created `videos.json` array with video metadata, chapters, and timed overlays
+   - Added 4 curated sample questions (`q-prophase`, `q-metaphase`, `q-anaphase`, `q-cytokinesis`) in original wording with 1-2 sentence explanations, `isSample: true`, and null year/paper
+   - Extended `scripts/validate-data.mjs` to strictly enforce:
+     - All overlay question IDs exist in `questions.json`
+     - Overlay `endSec` is strictly after `startSec`
+     - Overlays do not exceed `video.durationSec`
+     - Any non-sample question MUST have valid `year`, `paper`, and `source`
+   - Added `getNonSamplePaperCount(conceptId)` frequency calculation helper
+
+### Verification
+- ✅ `npm run build` — Clean production build with data validation, tsc, and vite build (0 errors)
+- ✅ `npm run validate:data` — All 5 datasets verified (concepts, questions, videos, quiz, notes)
+- ✅ `npm run lint` — 0 warnings, 0 errors (oxlint)
+- ✅ `npm run typecheck` — Clean TypeScript type check (`tsc -b --noEmit`)
+- ✅ Automated browser verification suite (`test-video-lesson.mjs`) passed 8/8 tests with Edge headless:
+  - Video attributes, preload="metadata", playsInline, controls, and uncropped 16:9
+  - Dedicated Mute toggle and audio state syncing
+  - Seeking to overlays and active card rendering
+  - "Pause and try", option evaluation, and "Continue" playback resumption
+  - Automatic answer reveal at `revealAnswerAtSec`
+  - Chapter list navigation and seeking
+  - 360px mobile viewport zero-overflow check (`scrollWidth === 360`)
+  - "Video coming soon" fallback card on loading error
+
+---
+
+## 🔜 Next Steps: Slice 3B / Slice 4
+- Three.js 3D interactive stages / GLB model exploration
+- Stage controller & camera rigs connecting to 3D models per NEET_PROJECT_SPEC.md §6
 
 ---
 
 ## Spec Notes & Considerations
-- **Palette refinement**: The spec §7 described a general deep dark background with bioluminescent accents; Slice 2B pinned specific hexadecimal values (`#070B14`, `#E8F0FA`, `#A9B9CF`, `#4FE3C8`, `#8B7CFF`, `#5AA9FF`, `#FF7A9C`, and `#FFB547`). These are recorded in `tokens.css` and strictly respect the rule that amber is reserved solely for NEET Alerts.
-- **Motion hierarchy**: Per spec §7 ("keep everything else calm"), the strongest motion is placed on the Home page, while the lesson pages maintain a focused, calm study environment.
+- **Video Player vs 3D Scene (Spec §6 & §10)**: Spec §6 prioritized an interactive 3D scene with Three.js / R3F for Slice 3. Slice 3A introduces a complementary high-definition pre-rendered animation video player (`mitosis-lesson.mp4`) with timed dynamic PYQ checkpoints and chapter scrubbing. This provides an immediate, polished multimedia lesson player and fallback while 3D GLB assets are prepared.
+- **Data Model Evolution (§5)**: The spec originally defined `Question` with required `year: number` and `paper: string`. For prototype sample items (`isSample: true`), Slice 3A allows `year: null` and `paper: null`, while strictly requiring `year`, `paper`, and `source` for all non-sample exam questions.
+- **Concept Tagging**: The spec mentioned `conceptIds: string[]`. Slice 3A supports both `conceptId: string` (singular) and `conceptIds?: string[]` to ensure seamless compatibility across all features and queries.

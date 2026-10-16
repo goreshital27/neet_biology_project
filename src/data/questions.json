@@ -1,8 +1,81 @@
 [
   {
+    "id": "q-prophase",
+    "year": null,
+    "paper": null,
+    "source": "written for this project",
+    "text": "Which structures disappear by the end of prophase?",
+    "options": [
+      "Centrosome and spindle fibres",
+      "Nucleolus and nuclear envelope",
+      "Chromosomes and centromere",
+      "Plasma membrane and cytoplasm"
+    ],
+    "answerIndex": 1,
+    "explanation": "By late prophase, the nucleolus, Golgi complex, endoplasmic reticulum, and nuclear envelope dissociate completely. Chromatin condenses into visible chromosomes while the mitotic spindle begins assembling.",
+    "conceptId": "mitosis-prophase",
+    "conceptIds": ["mitosis-prophase"],
+    "isSample": true
+  },
+  {
+    "id": "q-metaphase",
+    "year": null,
+    "paper": null,
+    "source": "written for this project",
+    "text": "At which stage of mitosis is chromosome morphology most easily studied?",
+    "options": [
+      "Prophase",
+      "Metaphase",
+      "Anaphase",
+      "Telophase"
+    ],
+    "answerIndex": 1,
+    "explanation": "Chromosomes reach their maximum degree of condensation and align at the equatorial metaphase plate. At this stage, individual chromosome morphology, chromatid arms, and centromere positions are most easily studied under the microscope.",
+    "conceptId": "mitosis-metaphase",
+    "conceptIds": ["mitosis-metaphase"],
+    "isSample": true
+  },
+  {
+    "id": "q-anaphase",
+    "year": null,
+    "paper": null,
+    "source": "written for this project",
+    "text": "During which phase of mitosis do sister chromatids separate and move towards opposite poles?",
+    "options": [
+      "Prophase",
+      "Metaphase",
+      "Anaphase",
+      "Telophase"
+    ],
+    "answerIndex": 2,
+    "explanation": "Anaphase initiates with the synchronous splitting of centromeres holding sister chromatids together. The newly separated daughter chromosomes are then pulled toward opposite spindle poles by shortening kinetochore microtubules.",
+    "conceptId": "mitosis-anaphase",
+    "conceptIds": ["mitosis-anaphase"],
+    "isSample": true
+  },
+  {
+    "id": "q-cytokinesis",
+    "year": null,
+    "paper": null,
+    "source": "written for this project",
+    "text": "In animal cells, cytokinesis happens by:",
+    "options": [
+      "Cell plate growing outward",
+      "Cleavage furrow deepening inward",
+      "Middle lamella dissolving",
+      "Phragmoplast fusion"
+    ],
+    "answerIndex": 1,
+    "explanation": "In animal cells, cytokinesis occurs through the centripetal deepening of a cleavage furrow in the plasma membrane until it meets in the center. In contrast, plant cells divide centrifugally through the formation of a cell plate.",
+    "conceptId": "cytokinesis",
+    "conceptIds": ["cytokinesis"],
+    "isSample": true
+  },
+  {
     "id": "sample-cc-2023-q1",
     "year": 2023,
     "paper": "NEET Practice Sample 2023",
+    "source": "NEET Biology Studio Curated Sample Question",
     "text": "A eukaryotic cell with 2n = 16 chromosomes and an initial DNA quantity of 2C undergoes the S phase of interphase. What will be the chromosome number and DNA content immediately following completion of S phase?",
     "options": [
       "2n = 16 and 4C",
@@ -12,14 +85,15 @@
     ],
     "answerIndex": 0,
     "explanation": "During interphase S phase, genomic DNA undergoes semiconservative replication, causing total DNA content to increase from 2C to 4C. However, the physical count of chromosomes remains unchanged at 2n = 16 because sister chromatids remain physically united at the centromere.",
+    "conceptId": "cell-cycle-s-phase",
     "conceptIds": ["cell-cycle-s-phase"],
-    "source": "NEET Biology Studio Curated Sample Question",
     "isSample": true
   },
   {
     "id": "sample-cc-2023-q2",
     "year": 2023,
     "paper": "NEET Practice Sample 2023",
+    "source": "NEET Biology Studio Curated Sample Question",
     "text": "Which of the following events characterizes the quiescent G0 stage of the cell cycle?",
     "options": [
       "Cells exit the cell cycle and permanently lose all metabolic activities",
@@ -29,14 +103,15 @@
     ],
     "answerIndex": 1,
     "explanation": "Cells in G0 exit the active proliferative cycle and enter an inactive quiescent state. While they cease routine cell division, they remain fully metabolically viable and can re-enter cycling if stimulated by extracellular signals.",
+    "conceptId": "cell-cycle-overview",
     "conceptIds": ["cell-cycle-overview"],
-    "source": "NEET Biology Studio Curated Sample Question",
     "isSample": true
   },
   {
     "id": "sample-cc-2022-q1",
     "year": 2022,
     "paper": "NEET Practice Sample 2022",
+    "source": "NEET Biology Studio Curated Sample Question",
     "text": "During which mitotic stage can the shape, arm ratio, and morphological structure of individual chromosomes be most effectively examined under light microscopy?",
     "options": [
       "Prophase",
@@ -46,14 +121,15 @@
     ],
     "answerIndex": 1,
     "explanation": "By metaphase, chromosomes have achieved their maximal degree of condensation and are aligned at the equatorial plate, making their distinct arms, centromeres, and secondary constrictions clearest for karyotypic analysis.",
+    "conceptId": "mitosis-metaphase",
     "conceptIds": ["mitosis-metaphase"],
-    "source": "NEET Biology Studio Curated Sample Question",
     "isSample": true
   },
   {
     "id": "sample-cc-2022-q2",
     "year": 2022,
     "paper": "NEET Practice Sample 2022",
+    "source": "NEET Biology Studio Curated Sample Question",
     "text": "Genetic recombination and crossing over between non-sister chromatids of homologous chromosomes take place during which meiotic stage?",
     "options": [
       "Leptotene",
@@ -63,14 +139,15 @@
     ],
     "answerIndex": 2,
     "explanation": "Crossing over occurs during pachytene of prophase I. It is an enzyme-mediated process facilitated by recombinase, resulting in reciprocal genetic exchange between non-sister chromatids of a homologous bivalent.",
+    "conceptId": "meiosis-pachytene",
     "conceptIds": ["meiosis-pachytene"],
-    "source": "NEET Biology Studio Curated Sample Question",
     "isSample": true
   },
   {
     "id": "sample-cc-2021-q1",
     "year": 2021,
     "paper": "NEET Practice Sample 2021",
+    "source": "NEET Biology Studio Curated Sample Question",
     "text": "What marks the definitive transition into mitotic anaphase?",
     "options": [
       "Dissolution of the nuclear envelope",
@@ -80,14 +157,15 @@
     ],
     "answerIndex": 2,
     "explanation": "Anaphase begins promptly when the centromere binding each pair of sister chromatids cleaves, converting them into individual daughter chromosomes that are drawn toward opposite spindle poles.",
+    "conceptId": "mitosis-anaphase",
     "conceptIds": ["mitosis-anaphase"],
-    "source": "NEET Biology Studio Curated Sample Question",
     "isSample": true
   },
   {
     "id": "sample-cc-2021-q2",
     "year": 2021,
     "paper": "NEET Practice Sample 2021",
+    "source": "NEET Biology Studio Curated Sample Question",
     "text": "In a dividing plant cell, cytokinesis is distinguished from animal cell cytokinesis by which of the following features?",
     "options": [
       "Inward centripetal furrowing of the plasma membrane",
@@ -97,14 +175,15 @@
     ],
     "answerIndex": 1,
     "explanation": "Plant cells possess a rigid, inextensible wall and cannot form a cleavage furrow. Instead, cytoplasmic partitioning proceeds centrifugally via phragmoplast vesicles coalescing into a central cell plate that extends outward to fuse with lateral walls.",
+    "conceptId": "cytokinesis",
     "conceptIds": ["cytokinesis"],
-    "source": "NEET Biology Studio Curated Sample Question",
     "isSample": true
   },
   {
     "id": "sample-cc-2020-q1",
     "year": 2020,
     "paper": "NEET Practice Sample 2020",
+    "source": "NEET Biology Studio Curated Sample Question",
     "text": "During which phase of interphase does cytoplasmic centriole replication take place in animal cells?",
     "options": [
       "G1 phase",
@@ -114,14 +193,15 @@
     ],
     "answerIndex": 1,
     "explanation": "In animal cells, centriole duplication commences within the cytoplasm synchronously with DNA replication inside the nucleus throughout the S phase.",
+    "conceptId": "cell-cycle-s-phase",
     "conceptIds": ["cell-cycle-s-phase"],
-    "source": "NEET Biology Studio Curated Sample Question",
     "isSample": true
   },
   {
     "id": "sample-cc-2020-q2",
     "year": 2020,
     "paper": "NEET Practice Sample 2020",
+    "source": "NEET Biology Studio Curated Sample Question",
     "text": "By the conclusion of prophase in a proliferating somatic cell, which cellular structures become visibly absent?",
     "options": [
       "Chromatids and centromeres",
@@ -131,14 +211,15 @@
     ],
     "answerIndex": 2,
     "explanation": "As cells transition out of prophase, the nuclear envelope fragments into vesicles, the nucleolus disperses, and cytoplasmic organelle complexes like the Golgi apparatus and endoplasmic reticulum dissociate.",
+    "conceptId": "mitosis-prophase",
     "conceptIds": ["mitosis-prophase"],
-    "source": "NEET Biology Studio Curated Sample Question",
     "isSample": true
   },
   {
     "id": "sample-cc-2019-q1",
     "year": 2019,
     "paper": "NEET Practice Sample 2019",
+    "source": "NEET Biology Studio Curated Sample Question",
     "text": "In the cell cycle, tubulin protein synthesis required for spindle apparatus assembly primarily occurs during:",
     "options": [
       "G1 phase",
@@ -148,14 +229,15 @@
     ],
     "answerIndex": 2,
     "explanation": "While G1 features mass transcription and growth and S carries out DNA replication, the G2 phase specializes in synthesizing mitotic proteins including tubulin dimers for spindle microtubule construction.",
+    "conceptId": "cell-cycle-g2-phase",
     "conceptIds": ["cell-cycle-g2-phase"],
-    "source": "NEET Biology Studio Curated Sample Question",
     "isSample": true
   },
   {
     "id": "sample-cc-2019-q2",
     "year": 2019,
     "paper": "NEET Practice Sample 2019",
+    "source": "NEET Biology Studio Curated Sample Question",
     "text": "Telophase is often characterized as the inverse of prophase because:",
     "options": [
       "Sister chromatids break into disparate fragments",
@@ -165,9 +247,8 @@
     ],
     "answerIndex": 1,
     "explanation": "Telophase essentially reverses the events of prophase: condensed chromosomes reach the poles and uncoil into indistinct chromatin, while nuclear envelopes, nucleoli, and organelle systems reform.",
+    "conceptId": "mitosis-telophase",
     "conceptIds": ["mitosis-telophase"],
-    "source": "NEET Biology Studio Curated Sample Question",
     "isSample": true
   }
 ]
-

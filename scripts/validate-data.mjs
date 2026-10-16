@@ -98,7 +98,7 @@ try {
         verifiedQuestionCount++
       }
 
-      // Spec hard constraint: non-sample questions must have source, year, and conceptIds
+      // Spec hard constraint: non-sample questions must have source, year, and paper
       if (!q.isSample) {
         if (!q.source || typeof q.source !== 'string' || q.source.trim() === '') {
           errors.push(`${loc}: Non-sample question MUST have a verified "source"`)
@@ -106,8 +106,11 @@ try {
         if (typeof q.year !== 'number' || q.year < 1990 || q.year > 2030) {
           errors.push(`${loc}: Non-sample question MUST have a valid "year"`)
         }
-        if (!Array.isArray(q.conceptIds) || q.conceptIds.length === 0) {
-          errors.push(`${loc}: Non-sample question MUST link to at least one concept in "conceptIds"`)
+        if (!q.paper || typeof q.paper !== 'string' || q.paper.trim() === '') {
+          errors.push(`${loc}: Non-sample question MUST have a verified "paper"`)
+        }
+        if (!q.conceptId && (!Array.isArray(q.conceptIds) || q.conceptIds.length === 0)) {
+          errors.push(`${loc}: Non-sample question MUST link to at least one concept in "conceptId" or "conceptIds"`)
         }
       }
 
@@ -124,6 +127,9 @@ try {
         errors.push(`${loc}: Missing or invalid "explanation"`)
       }
 
+      if (q.conceptId && !validConceptIds.has(q.conceptId)) {
+        errors.push(`${loc}: Unknown conceptId "${q.conceptId}" referenced`)
+      }
       if (Array.isArray(q.conceptIds)) {
         q.conceptIds.forEach((cId) => {
           if (!validConceptIds.has(cId)) {
@@ -136,6 +142,78 @@ try {
   }
 } catch (err) {
   errors.push(`Failed reading questions.json: ${err.message}`)
+}
+
+const validQuestionIds = new Set(
+  (() => {
+    try {
+      return readJson('questions.json').map((q) => q.id)
+    } catch {
+      return []
+    }
+  })()
+)
+
+// 3. Validate Videos
+try {
+  const videos = readJson('videos.json')
+  if (!Array.isArray(videos)) {
+    errors.push('videos.json: Root must be an array')
+  } else {
+    videos.forEach((video, vIdx) => {
+      const loc = `videos.json[${vIdx}]`
+      if (!video.id || typeof video.id !== 'string') errors.push(`${loc}: Missing or invalid "id"`)
+      if (!video.title || typeof video.title !== 'string') errors.push(`${loc}: Missing or invalid "title"`)
+      if (!video.src || typeof video.src !== 'string') errors.push(`${loc}: Missing or invalid "src"`)
+      if (typeof video.durationSec !== 'number' || video.durationSec <= 0) {
+        errors.push(`${loc}: Missing or invalid "durationSec" (must be positive number)`)
+      }
+
+      if (!Array.isArray(video.chapters)) {
+        errors.push(`${loc}: "chapters" must be an array`)
+      } else {
+        video.chapters.forEach((ch, cIdx) => {
+          const chLoc = `${loc}.chapters[${cIdx}]`
+          if (!ch.label || typeof ch.label !== 'string') errors.push(`${chLoc}: Missing or invalid "label"`)
+          if (typeof ch.startSec !== 'number' || ch.startSec < 0 || ch.startSec > video.durationSec) {
+            errors.push(`${chLoc}: "startSec" must be a non-negative number within durationSec`)
+          }
+        })
+      }
+
+      if (!Array.isArray(video.overlays)) {
+        errors.push(`${loc}: "overlays" must be an array`)
+      } else {
+        video.overlays.forEach((ov, oIdx) => {
+          const ovLoc = `${loc}.overlays[${oIdx}]`
+          if (typeof ov.startSec !== 'number' || ov.startSec < 0) {
+            errors.push(`${ovLoc}: "startSec" must be a non-negative number`)
+          }
+          if (typeof ov.endSec !== 'number') {
+            errors.push(`${ovLoc}: Missing or invalid "endSec"`)
+          } else if (ov.endSec <= ov.startSec) {
+            errors.push(`${ovLoc}: "endSec" (${ov.endSec}s) must be after "startSec" (${ov.startSec}s)`)
+          }
+          if (ov.startSec > video.durationSec || ov.endSec > video.durationSec) {
+            errors.push(`${ovLoc}: Overlay (${ov.startSec}s - ${ov.endSec}s) is beyond durationSec (${video.durationSec}s)`)
+          }
+          if (!ov.questionId || typeof ov.questionId !== 'string') {
+            errors.push(`${ovLoc}: Missing or invalid "questionId"`)
+          } else if (!validQuestionIds.has(ov.questionId)) {
+            errors.push(`${ovLoc}: Overlay points to missing questionId "${ov.questionId}"`)
+          }
+          if (typeof ov.revealAnswerAtSec === 'number') {
+            if (ov.revealAnswerAtSec < ov.startSec || ov.revealAnswerAtSec > ov.endSec) {
+              errors.push(`${ovLoc}: "revealAnswerAtSec" (${ov.revealAnswerAtSec}s) must be between startSec and endSec`)
+            }
+          }
+        })
+      }
+    })
+    console.log(`✓ videos.json: ${videos.length} videos verified`)
+  }
+} catch (err) {
+  errors.push(`Failed reading videos.json: ${err.message}`)
 }
 
 // 3. Validate Quiz

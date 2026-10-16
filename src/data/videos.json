@@ -1,0 +1,48 @@
+[
+  {
+    "id": "mitosis-lesson",
+    "title": "Mitosis: Stages & Cell Division",
+    "src": "/videos/mitosis-lesson.mp4",
+    "durationSec": 20.0,
+    "chapters": [
+      { "label": "Interphase", "startSec": 0 },
+      { "label": "Prophase", "startSec": 2 },
+      { "label": "Metaphase", "startSec": 3.8 },
+      { "label": "Anaphase", "startSec": 5.5 },
+      { "label": "Daughter cells", "startSec": 7 },
+      { "label": "Recap", "startSec": 8.8 },
+      { "label": "Interphase", "startSec": 10.3 },
+      { "label": "Prophase", "startSec": 12 },
+      { "label": "Prometaphase", "startSec": 13.7 },
+      { "label": "Metaphase", "startSec": 15.2 },
+      { "label": "Anaphase", "startSec": 16.8 },
+      { "label": "Telophase and cytokinesis", "startSec": 18.3 }
+    ],
+    "overlays": [
+      {
+        "startSec": 12.0,
+        "endSec": 13.7,
+        "questionId": "q-prophase",
+        "revealAnswerAtSec": 13.0
+      },
+      {
+        "startSec": 15.2,
+        "endSec": 16.8,
+        "questionId": "q-metaphase",
+        "revealAnswerAtSec": 16.2
+      },
+      {
+        "startSec": 16.8,
+        "endSec": 18.3,
+        "questionId": "q-anaphase",
+        "revealAnswerAtSec": 17.7
+      },
+      {
+        "startSec": 18.3,
+        "endSec": 20.0,
+        "questionId": "q-cytokinesis",
+        "revealAnswerAtSec": 19.4
+      }
+    ]
+  }
+]

@@ -28,12 +28,14 @@ export interface Concept {
  * questions MUST have `isSample: true` and display a "Sample data" badge.
  */
 export interface Question {
-  /** Unique question identifier, e.g. "sample-cc-q1" */
+  /** Unique question identifier, e.g. "q-prophase" */
   id: string
-  /** Examination year, e.g. 2023 */
-  year: number
-  /** Examination paper name, e.g. "NEET Practice Sample 2023" */
-  paper: string
+  /** Examination year, e.g. 2023 or null for unassigned sample */
+  year: number | null
+  /** Examination paper name, e.g. "NEET Practice Sample 2023" or null for sample */
+  paper: string | null
+  /** Source attribution of the question */
+  source: string
   /** Question prompt */
   text: string
   /** Four multiple choice options */
@@ -42,12 +44,54 @@ export interface Question {
   answerIndex: number
   /** Detailed rationale in original wording */
   explanation: string
-  /** IDs of concepts tested by this question (foreign keys to Concept.id) */
-  conceptIds: string[]
-  /** Source attribution of the question */
-  source: string
+  /** Primary concept ID tested by this question (foreign key to Concept.id) */
+  conceptId: string
+  /** Optional array of concept IDs tested by this question */
+  conceptIds?: string[]
   /** True if placeholder/mock question; false ONLY when verified against actual past exam papers */
   isSample: boolean
+}
+
+/**
+ * Chapter marker within a video timeline.
+ */
+export interface VideoChapter {
+  /** Chapter display label, e.g. "Prophase" */
+  label: string
+  /** Start time in seconds */
+  startSec: number
+}
+
+/**
+ * Question overlay cue within a video timeline.
+ */
+export interface VideoOverlay {
+  /** Second at which question card slides in */
+  startSec: number
+  /** Second at which question card slides out */
+  endSec: number
+  /** Question identifier in questions.json */
+  questionId: string
+  /** Second at which correct answer and explanation are revealed */
+  revealAnswerAtSec: number
+}
+
+/**
+ * Video lesson definition.
+ */
+export interface Video {
+  /** Unique video identifier, e.g. "mitosis-lesson" */
+  id: string
+  /** Video title */
+  title: string
+  /** Source video URL path */
+  src: string
+  /** Total duration in seconds */
+  durationSec: number
+  /** Interactive chapters */
+  chapters: VideoChapter[]
+  /** Timed PYQ question overlays */
+  overlays: VideoOverlay[]
 }
 
 /**

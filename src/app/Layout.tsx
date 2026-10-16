@@ -13,20 +13,20 @@ import { CellDivisionTransition } from '../components/CellDivisionTransition'
  */
 export function RootLayout() {
   const navLinkClass = ({ isActive }: { isActive: boolean }) =>
-    `px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm font-medium transition-colors ` +
+    `px-1.5 sm:px-3 py-1 sm:py-2 rounded-lg text-[11px] sm:text-sm font-medium transition-colors ` +
     `hover:bg-[var(--color-bg-elevated)] ` +
     (isActive
       ? 'text-[var(--color-teal)] font-semibold'
       : 'text-[var(--color-text-secondary)]')
 
   return (
-    <div className="min-h-dvh flex flex-col relative text-[var(--color-text-primary)]">
+    <div className="min-h-dvh flex flex-col relative text-[var(--color-text-primary)] w-full max-w-full overflow-x-hidden">
       {/* ── Living Cell Canvas & Contrast Overlay (behind content) ── */}
       <LivingCellBackground chapterId="cell-cycle" />
 
       {/* ── Header (above canvas) ── */}
       <header
-        className="sticky top-0 z-50 flex items-center justify-between px-3 sm:px-6 border-b backdrop-blur-md"
+        className="sticky top-0 z-50 flex items-center justify-between px-2 sm:px-6 border-b backdrop-blur-md"
         style={{
           height: 'var(--header-height)',
           backgroundColor: 'rgba(7, 11, 20, 0.82)',
