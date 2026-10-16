@@ -1,10 +1,17 @@
 import { useState, useRef, useEffect, useMemo, useCallback } from 'react'
 import { videos, questions as allQuestions } from '../../data'
+import type { StageTimestamp } from '../../data/syllabus'
 import { VideoPlayer } from './VideoPlayer'
 import { ChapterList } from './ChapterList'
 import { PyqOverlayCard } from './PyqOverlayCard'
+import { StageChips } from './StageChips'
 
-export function MitosisVideoLesson() {
+interface MitosisVideoLessonProps {
+  posterUrl?: string
+  stageChips?: StageTimestamp[]
+}
+
+export function MitosisVideoLesson({ posterUrl, stageChips }: MitosisVideoLessonProps = {}) {
   const videoData = videos[0] // Mitosis lesson video
   const videoRef = useRef<HTMLVideoElement | null>(null)
 
@@ -184,6 +191,7 @@ export function MitosisVideoLesson() {
           <VideoPlayer
             videoRef={videoRef}
             src={videoData.src}
+            poster={posterUrl ?? '/videos/mitosis-poster.jpg'}
             currentTime={currentTime}
             duration={videoData.durationSec}
             isMuted={isMuted}
@@ -212,8 +220,50 @@ export function MitosisVideoLesson() {
           />
         </div>
 
-        {/* 3. Chapter list: Sits under video on desktop, and under PYQ card on mobile */}
-        <div className="w-full lg:col-span-8 order-3 lg:order-3">
+        {/* 3. Stage chips and Chapter timeline: Sits under video on desktop, and under PYQ card on mobile */}
+        <div className="w-full lg:col-span-8 order-3 lg:order-3 flex flex-col gap-4">
+          <StageChips
+            stages={
+              stageChips && stageChips.length > 0
+                ? stageChips
+                : [
+                    {
+                      label: 'Interphase',
+                      timestamp: 0.0,
+                      explanation: 'The cell prepares for division by duplicating its DNA and organelles.',
+                    },
+                    {
+                      label: 'Prophase',
+                      timestamp: 12.0,
+                      explanation: 'Chromatin condenses into visible chromosomes while the mitotic spindle begins assembling.',
+                    },
+                    {
+                      label: 'Metaphase',
+                      timestamp: 15.2,
+                      explanation: 'Chromosomes achieve peak condensation and align at the equatorial metaphase plate.',
+                    },
+                    {
+                      label: 'Anaphase',
+                      timestamp: 16.8,
+                      explanation: 'Centromeres split simultaneously, drawing sister chromatids toward opposite spindle poles.',
+                    },
+                    {
+                      label: 'Telophase',
+                      timestamp: 18.3,
+                      explanation: 'Chromosomes uncoil into diffuse chromatin while new nuclear envelopes assemble.',
+                    },
+                    {
+                      label: 'Cytokinesis',
+                      timestamp: 19.0,
+                      explanation: 'In animal cells, an inward-deepening cleavage furrow divides the cytoplasm into two daughter cells.',
+                    },
+                  ]
+            }
+            currentTime={currentTime}
+            duration={videoData.durationSec}
+            onSeek={handleSeek}
+          />
+
           <ChapterList
             chapters={videoData.chapters}
             currentTime={currentTime}

@@ -3,6 +3,7 @@ import React from 'react'
 interface VideoPlayerProps {
   videoRef: React.RefObject<HTMLVideoElement | null>
   src: string
+  poster?: string
   currentTime: number
   duration: number
   isMuted: boolean
@@ -17,6 +18,7 @@ interface VideoPlayerProps {
 export function VideoPlayer({
   videoRef,
   src,
+  poster,
   currentTime,
   duration,
   isMuted,
@@ -210,6 +212,7 @@ export function VideoPlayer({
           <video
             ref={videoRef}
             src={src}
+            poster={poster}
             preload="metadata"
             playsInline
             controls

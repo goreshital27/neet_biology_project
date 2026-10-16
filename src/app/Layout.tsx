@@ -83,14 +83,11 @@ export function RootLayout() {
             <NavLink to="/" end className={navLinkClass}>
               Home
             </NavLink>
-            <NavLink to="/lesson" className={navLinkClass}>
-              Lesson
+            <NavLink to="/syllabus" className={navLinkClass}>
+              Syllabus
             </NavLink>
             <NavLink to="/insights" className={navLinkClass}>
-              Insights
-            </NavLink>
-            <NavLink to="/quiz" className={navLinkClass}>
-              Quiz
+              PYQ insights
             </NavLink>
             <NavLink to="/notes" className={navLinkClass}>
               Notes

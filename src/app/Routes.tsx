@@ -1,7 +1,7 @@
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom'
 import { RootLayout } from './Layout'
 import { HomePage } from './pages/HomePage'
-import { LessonPage } from './pages/LessonPage'
+import { ChapterPage } from './pages/ChapterPage'
 import { InsightsPage } from './pages/InsightsPage'
 import { QuizPage } from './pages/QuizPage'
 import { NotesPage } from './pages/NotesPage'
@@ -16,7 +16,9 @@ export function AppRoutes() {
     <Routes>
       <Route element={<RootLayout />}>
         <Route index element={<HomePage />} />
-        <Route path="lesson" element={<LessonPage />} />
+        <Route path="syllabus" element={<HomePage />} />
+        <Route path="chapter/:slug" element={<ChapterPage />} />
+        <Route path="lesson" element={<Navigate to="/chapter/cell-cycle-and-cell-division" replace />} />
         <Route path="insights" element={<InsightsPage />} />
         <Route path="quiz" element={<QuizPage />} />
         <Route path="notes" element={<NotesPage />} />
@@ -25,4 +27,3 @@ export function AppRoutes() {
     </Routes>
   )
 }
-

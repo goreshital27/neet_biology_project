@@ -177,7 +177,58 @@
 
 ---
 
-## 🔜 Next Steps: Slice 3B / Slice 4
+## ✅ Slice 3B: Syllabus Architecture & Chapter Pages (Complete)
+
+**Date:** 2026-10-17
+
+### What was built
+1. **Syllabus Data Model** (`src/data/syllabus.ts`):
+   - Full NTA NEET Biology curriculum for Class 11 (5 units, 22 chapters) and Class 12 (5 units, 16 chapters).
+   - Chapter attributes: `id`, `slug`, `title`, `classLevel` (11 | 12), `unit`, `weightage` ('High' | 'Medium' | 'Low'), `status` ('live' | 'coming-soon'), `videoUrl?`, `stageTimestamps?`, and brief syllabus descriptions.
+   - Stage timestamps configured for Cell Cycle and Cell Division: Interphase (0s), Prophase (2s), Metaphase (3.8s), Anaphase (5.5s), Telophase (18.3s), Cytokinesis (18.3s).
+   - Only `"cell-cycle-and-cell-division"` has `status: 'live'`; all others are marked `'coming-soon'`.
+
+2. **Syllabus Home Page** (`/` in `src/app/pages/HomePage.tsx`):
+   - **Hero Section**: Exact headline `"Master NEET Biology, concept by concept"` and single subtitle line `"Animated lessons, NCERT notes and PYQ practice for the full syllabus"`.
+   - **Curriculum Controls**: Class 11 / Class 12 toggle tabs with chapter counts, and a real-time instant search input with clear button.
+   - **Unit Cards Grid**: Consistent 12px rounded borders (`rounded-[12px]`) with thin bioluminescent borders.
+   - **Chapter Rows**: Title, weightage badge (High [rose/amber], Medium [blue], Low [muted slate]), and status badge (Live with pulsing green status dot, or Soon).
+   - **Strict Zero-Media Isolation**: Removed all legacy 3D/video embeds, feature cards, and Cell Cycle specific preview elements from `/`. Visiting `/` triggers **0 video or media requests**.
+   - Navigation links seamlessly to `/chapter/:slug`.
+
+3. **Chapter Page Architecture** (`/chapter/:slug` in `src/app/pages/ChapterPage.tsx`):
+   - **Breadcrumbs**: `Home / Class 11 / Cell / Cell Cycle and Cell Division` with deep-linking to filtered class levels.
+   - **Header**: Chapter title, weightage badge, class badge, and chapter curriculum overview.
+   - **Four-Tab Workspace**: `Animation | Notes | Quiz | PYQ insights` (Animation tab selected by default).
+   - **Animation Tab**:
+     - Pre-rendered mitosis video player with `preload="metadata"` and dedicated `poster="/videos/mitosis-poster.jpg"`.
+     - Stage Chips (`src/features/lesson/StageChips.tsx`): 6 interactive stage chips (`Interphase`, `Prophase`, `Metaphase`, `Anaphase`, `Telophase`, `Cytokinesis`) with formatted timestamps (`0:00`, `0:02`, `0:15`), active glow state, jump-to-timestamp seeking, and active stage one-line NCERT explanation card.
+     - Dynamic time-synced PYQ question cards and overlay system.
+   - **Tab Modularization**:
+     - `NotesView.tsx`: NCERT revision note cards with 2-minute exam summary toggle.
+     - `QuizView.tsx`: 5-question MCQ checkpoint quiz with instant feedback, scoring, and retries.
+     - `InsightsView.tsx`: 5-year NEET question frequency analysis and high-yield breakdown.
+   - **Coming Soon Page**:
+     - Coming-soon chapters display a dedicated "Coming Soon" card with lesson production details and a `← Back to syllabus` button that navigates back to the home syllabus.
+
+4. **Navbar & Routing Polish** (`src/app/Layout.tsx`, `src/app/Routes.tsx`):
+   - Header navigation includes: Logo (links to `/`), Home, Syllabus, PYQ insights, Notes, Theme toggle, and Motion toggle.
+   - Removed chapter-specific "Lesson" link from global navigation; `/lesson` gracefully redirects to `/chapter/cell-cycle-and-cell-division`.
+
+### Verification
+- ✅ **Network Verification (CDP / Headless Edge)**:
+  - Navigated to `http://localhost:5173/`: 58 total requests, **0 video requests** (`.mp4` / `/videos/`). Verified video loads strictly on demand.
+  - Navigated to `http://localhost:5173/chapter/cell-cycle-and-cell-division`: Loads poster and video metadata correctly on chapter entry.
+  - Navigated to `http://localhost:5173/chapter/the-living-world`: Confirmed "Coming soon" state with "Back to syllabus" button.
+- ✅ **Typecheck & Lint**:
+  - `tsc -b --noEmit` passed with 0 errors.
+  - `oxlint` passed with 0 errors and 0 warnings across all 36 files.
+- ✅ **Production Build**:
+  - `npm run build` compiled client bundle with complete data validation.
+
+---
+
+## 🔜 Next Steps: Slice 4
 - Three.js 3D interactive stages / GLB model exploration
 - Stage controller & camera rigs connecting to 3D models per NEET_PROJECT_SPEC.md §6
 

@@ -8,6 +8,7 @@ import videosData from './videos.json'
 import type { Concept, Question, QuizQuestion, RevisionNote, Chapter, ConceptFrequency, Video } from './types'
 
 export * from './types'
+export * from './syllabus'
 
 export const concepts: Concept[] = conceptsData as Concept[]
 export const questions: Question[] = questionsData as Question[]

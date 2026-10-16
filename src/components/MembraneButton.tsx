@@ -8,6 +8,7 @@ interface MembraneButtonProps {
   className?: string
   ariaLabel?: string
   title?: string
+  disabled?: boolean
 }
 
 interface Ripple {
@@ -28,10 +29,12 @@ export function MembraneButton({
   className = '',
   ariaLabel,
   title,
+  disabled = false,
 }: MembraneButtonProps) {
   const [ripples, setRipples] = useState<Ripple[]>([])
 
   const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
+    if (disabled) return
     const rect = e.currentTarget.getBoundingClientRect()
     const x = e.clientX - rect.left
     const y = e.clientY - rect.top
@@ -54,13 +57,14 @@ export function MembraneButton({
 
   return (
     <motion.button
-      whileHover={{ y: -2 }}
-      whileTap={{ scale: 0.96 }}
+      whileHover={disabled ? undefined : { y: -2 }}
+      whileTap={disabled ? undefined : { scale: 0.96 }}
       transition={{ type: 'spring', stiffness: 450, damping: 25 }}
       onClick={handleClick}
+      disabled={disabled}
       aria-label={ariaLabel}
       title={title}
-      className={`relative overflow-hidden inline-flex items-center justify-center px-6 py-3 rounded-xl transition-colors ${baseStyle[variant]} ${className}`}
+      className={`relative overflow-hidden inline-flex items-center justify-center px-6 py-3 rounded-xl transition-colors ${baseStyle[variant]} ${disabled ? 'opacity-50 cursor-not-allowed' : ''} ${className}`}
       style={{
         minHeight: 'var(--tap-target-min)',
       }}
