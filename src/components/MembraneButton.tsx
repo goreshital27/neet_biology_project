@@ -50,9 +50,9 @@ export function MembraneButton({
   }
 
   const baseStyle: Record<string, string> = {
-    primary: 'bg-[var(--color-teal)] text-[var(--color-text-inverse)] shadow-[var(--shadow-glow-cyan)] font-semibold',
-    secondary: 'bg-[var(--color-bg-secondary)] text-[var(--color-text-primary)] border border-[var(--color-border)]',
-    outline: 'border border-[var(--color-teal)] text-[var(--color-teal)] bg-transparent',
+    primary: 'bg-[var(--accent)] text-[var(--on-accent)] font-semibold shadow-sm hover:opacity-95',
+    secondary: 'bg-[var(--surface-2)] text-[var(--text)] border border-[var(--border)] hover:border-[var(--accent)] hover:bg-[var(--surface)]',
+    outline: 'border border-[var(--accent)] text-[var(--accent)] bg-transparent hover:bg-[var(--surface-2)]',
   }
 
   return (

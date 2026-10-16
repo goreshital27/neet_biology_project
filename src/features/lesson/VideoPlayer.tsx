@@ -18,7 +18,7 @@ interface VideoPlayerProps {
 export function VideoPlayer({
   videoRef,
   src,
-  poster,
+  poster = '/videos/mitosis-poster.jpg',
   currentTime,
   duration,
   isMuted,
@@ -42,35 +42,15 @@ export function VideoPlayer({
     <div className="relative w-full flex flex-col gap-2.5">
       {/* Top Header / Meta bar above the player */}
       <div className="flex flex-wrap items-center justify-between gap-2 text-xs">
+        {/* Left side: Debug timing helper (?debug in URL) or empty spacer */}
         <div className="flex items-center gap-2">
-          {/* AI generated visuals badge */}
-          <span
-            className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full border"
-            style={{
-              backgroundColor: 'rgba(14, 21, 38, 0.7)',
-              borderColor: 'var(--color-border)',
-              color: 'var(--color-text-secondary)',
-              fontFamily: 'var(--font-mono)',
-            }}
-          >
-            <span
-              className="w-1.5 h-1.5 rounded-full"
-              style={{ backgroundColor: 'var(--color-teal)' }}
-              aria-hidden="true"
-            />
-            Visuals generated with AI
-          </span>
-        </div>
-
-        <div className="flex items-center gap-2">
-          {/* Debug timing helper */}
           {isDebug && (
             <div
               className="flex items-center gap-1.5 px-2.5 py-1 rounded-full border text-xs"
               style={{
-                backgroundColor: 'rgba(79, 227, 200, 0.08)',
-                borderColor: 'var(--color-teal)',
-                color: 'var(--color-teal)',
+                backgroundColor: 'var(--surface-2)',
+                borderColor: 'var(--accent)',
+                color: 'var(--accent)',
                 fontFamily: 'var(--font-mono)',
               }}
             >
@@ -78,10 +58,10 @@ export function VideoPlayer({
               <button
                 type="button"
                 onClick={onCopyTime}
-                className="px-2 py-0.5 rounded font-semibold transition-colors focus-visible:ring-2 focus-visible:ring-[var(--color-teal)]"
+                className="px-2 py-0.5 rounded font-semibold transition-colors focus-visible:ring-2 focus-visible:ring-[var(--accent)]"
                 style={{
-                  backgroundColor: 'rgba(79, 227, 200, 0.2)',
-                  color: 'var(--color-teal)',
+                  backgroundColor: 'color-mix(in srgb, var(--accent) 20%, transparent)',
+                  color: 'var(--accent)',
                 }}
                 title="Copy current timestamp to clipboard (or press key M)"
               >
@@ -91,8 +71,8 @@ export function VideoPlayer({
                 <span
                   className="px-1.5 py-0.5 rounded text-[11px] font-bold"
                   style={{
-                    backgroundColor: 'var(--color-teal)',
-                    color: 'var(--color-bg-primary)',
+                    backgroundColor: 'var(--accent)',
+                    color: 'var(--on-accent)',
                   }}
                 >
                   {copiedNotice}
@@ -100,18 +80,20 @@ export function VideoPlayer({
               )}
             </div>
           )}
+        </div>
 
-          {/* Dedicated Mute/Unmute button */}
+        {/* Right side: Dedicated Mute/Unmute toggle button */}
+        <div className="flex items-center gap-2 ml-auto">
           <button
             type="button"
             onClick={onToggleMute}
             aria-label={isMuted ? 'Unmute video audio' : 'Mute video audio'}
             aria-pressed={isMuted}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-xs font-medium transition-colors focus-visible:ring-2 focus-visible:ring-[var(--color-teal)]"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-xs font-semibold transition-colors hover:bg-[var(--surface-2)] focus-visible:ring-2 focus-visible:ring-[var(--accent)]"
             style={{
-              backgroundColor: isMuted ? 'rgba(255, 122, 156, 0.12)' : 'rgba(14, 21, 38, 0.8)',
-              borderColor: isMuted ? 'rgba(255, 122, 156, 0.4)' : 'var(--color-border)',
-              color: isMuted ? 'var(--color-rose)' : 'var(--color-text-primary)',
+              backgroundColor: isMuted ? 'var(--tag-high-bg)' : 'var(--surface)',
+              borderColor: isMuted ? 'var(--tag-high-border)' : 'var(--border)',
+              color: isMuted ? 'var(--tag-high-text)' : 'var(--text)',
               minHeight: '36px',
             }}
           >
@@ -158,13 +140,12 @@ export function VideoPlayer({
         </div>
       </div>
 
-      {/* Video Container (Strictly uncropped with object-contain to preserve corner marks) */}
+      {/* 16:9 Video Container with Rounded Corners & Clear Controls */}
       <div
-        className="relative w-full aspect-video rounded-2xl overflow-hidden border flex items-center justify-center"
+        className="relative w-full aspect-video rounded-[16px] overflow-hidden border flex items-center justify-center shadow-lg"
         style={{
           backgroundColor: '#000000',
-          borderColor: 'var(--color-border)',
-          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.45)',
+          borderColor: 'var(--border)',
         }}
       >
         {hasError ? (
@@ -177,9 +158,9 @@ export function VideoPlayer({
             <div
               className="w-12 h-12 rounded-full flex items-center justify-center mb-3 border"
               style={{
-                backgroundColor: 'rgba(79, 227, 200, 0.1)',
-                borderColor: 'rgba(79, 227, 200, 0.3)',
-                color: 'var(--color-teal)',
+                backgroundColor: 'var(--tag-live-bg)',
+                borderColor: 'var(--tag-live-border)',
+                color: 'var(--tag-live-text)',
               }}
             >
               <svg
@@ -199,11 +180,11 @@ export function VideoPlayer({
             </div>
             <h3
               className="text-lg font-semibold mb-1"
-              style={{ fontFamily: 'var(--font-display)', color: 'var(--color-text-primary)' }}
+              style={{ fontFamily: 'var(--font-display)', color: 'var(--text)' }}
             >
               Video coming soon
             </h3>
-            <p className="text-xs leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
+            <p className="text-xs leading-relaxed" style={{ color: 'var(--text-2)' }}>
               The high-definition 3D mitosis animation is currently rendering or being transferred.
               You can still study the curriculum stages and sample PYQ questions below.
             </p>
@@ -218,7 +199,7 @@ export function VideoPlayer({
             controls
             muted={isMuted}
             onError={onError}
-            className="w-full h-full object-contain rounded-2xl"
+            className="w-full h-full object-contain rounded-[16px]"
             style={{
               maxHeight: '100%',
               maxWidth: '100%',

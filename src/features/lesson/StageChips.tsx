@@ -32,27 +32,27 @@ export function StageChips({ stages, currentTime, duration, onSeek }: StageChips
     <div
       className="w-full rounded-[12px] border p-4 backdrop-blur-sm"
       style={{
-        backgroundColor: 'rgba(14, 21, 38, 0.7)',
-        borderColor: 'var(--color-border)',
+        backgroundColor: 'var(--surface)',
+        borderColor: 'var(--border)',
       }}
     >
-      <div className="flex items-center justify-between mb-3 pb-2 border-b border-[var(--color-border)]">
+      <div className="flex items-center justify-between mb-3 pb-2 border-b border-[var(--border)]">
         <div className="flex items-center gap-2">
           <span
             className="w-2 h-2 rounded-full"
-            style={{ backgroundColor: 'var(--color-teal)' }}
+            style={{ backgroundColor: 'var(--accent)' }}
             aria-hidden="true"
           />
           <h2
             className="text-xs font-semibold uppercase tracking-wider"
-            style={{ fontFamily: 'var(--font-mono)', color: 'var(--color-text-primary)' }}
+            style={{ fontFamily: 'var(--font-mono)', color: 'var(--text)' }}
           >
             Mitosis Stage Jumps
           </h2>
         </div>
         <span
           className="text-[11px] font-mono"
-          style={{ color: 'var(--color-text-muted)' }}
+          style={{ color: 'var(--text-muted)' }}
         >
           Click stage to seek
         </span>
@@ -69,17 +69,17 @@ export function StageChips({ stages, currentTime, duration, onSeek }: StageChips
               type="button"
               onClick={() => onSeek(stage.timestamp)}
               aria-current={isActive ? 'step' : undefined}
-              className="flex flex-col items-center justify-center p-2 rounded-[12px] border text-center transition-all duration-150 focus-visible:ring-2 focus-visible:ring-[var(--color-teal)] outline-none min-h-[44px]"
+              className="flex flex-col items-center justify-center p-2 rounded-[12px] border text-center transition-all duration-150 focus-visible:ring-2 focus-visible:ring-[var(--accent)] outline-none min-h-[44px]"
               style={{
-                backgroundColor: isActive ? 'rgba(79, 227, 200, 0.15)' : 'rgba(7, 11, 20, 0.5)',
-                borderColor: isActive ? 'var(--color-teal)' : 'var(--color-border)',
-                boxShadow: isActive ? '0 0 12px rgba(79, 227, 200, 0.2)' : 'none',
+                backgroundColor: isActive ? 'var(--tag-live-bg)' : 'var(--surface-2)',
+                borderColor: isActive ? 'var(--tag-live-border)' : 'var(--border)',
+                boxShadow: isActive ? '0 0 12px color-mix(in srgb, var(--accent) 25%, transparent)' : 'none',
               }}
             >
               <span
                 className="text-xs font-semibold leading-tight line-clamp-1"
                 style={{
-                  color: isActive ? 'var(--color-teal)' : 'var(--color-text-primary)',
+                  color: isActive ? 'var(--tag-live-text)' : 'var(--text)',
                 }}
               >
                 {stage.label}
@@ -87,7 +87,7 @@ export function StageChips({ stages, currentTime, duration, onSeek }: StageChips
               <span
                 className="text-[10px] font-mono mt-0.5"
                 style={{
-                  color: isActive ? 'var(--color-teal)' : 'var(--color-text-muted)',
+                  color: isActive ? 'var(--tag-live-text)' : 'var(--text-muted)',
                 }}
               >
                 {formatSec(stage.timestamp)}
@@ -102,23 +102,23 @@ export function StageChips({ stages, currentTime, duration, onSeek }: StageChips
         <div
           className="p-3 rounded-[12px] border flex items-start gap-2.5 transition-all"
           style={{
-            backgroundColor: 'rgba(7, 11, 20, 0.65)',
-            borderColor: 'rgba(79, 227, 200, 0.25)',
+            backgroundColor: 'var(--surface-2)',
+            borderColor: 'var(--tag-live-border)',
           }}
         >
           <span
             className="text-[11px] font-mono uppercase font-bold shrink-0 px-2 py-0.5 rounded border mt-0.5"
             style={{
-              backgroundColor: 'rgba(79, 227, 200, 0.12)',
-              borderColor: 'var(--color-teal)',
-              color: 'var(--color-teal)',
+              backgroundColor: 'var(--tag-live-bg)',
+              borderColor: 'var(--tag-live-border)',
+              color: 'var(--tag-live-text)',
             }}
           >
             {currentStage.label}
           </span>
           <p
             className="text-xs sm:text-sm leading-relaxed"
-            style={{ color: 'var(--color-text-secondary)', fontFamily: 'var(--font-body)' }}
+            style={{ color: 'var(--text-2)', fontFamily: 'var(--font-body)' }}
           >
             {currentStage.explanation}
           </p>

@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { SampleDataBadge } from '../../components/SampleDataBadge'
 import { quizQuestions } from '../../data'
 import { MembraneButton } from '../../components/MembraneButton'
 
@@ -23,7 +22,7 @@ export function QuizView({ showHeader = true }: QuizViewProps) {
     <div className="flex flex-col items-center justify-center w-full max-w-3xl mx-auto">
       {showHeader && (
         <>
-          <div className="p-3 rounded-2xl border mb-4 text-[var(--color-teal)] bg-[rgba(79,227,200,0.1)] border-[rgba(79,227,200,0.25)]">
+          <div className="p-3 rounded-2xl border mb-4 text-[var(--accent)] bg-[var(--tag-live-bg)] border-[var(--tag-live-border)]">
             <svg
               width="32"
               height="32"
@@ -43,23 +42,22 @@ export function QuizView({ showHeader = true }: QuizViewProps) {
           <div className="flex items-center gap-2 mb-2">
             <p
               className="text-xs font-semibold uppercase tracking-widest"
-              style={{ color: 'var(--color-teal)', fontFamily: 'var(--font-mono)' }}
+              style={{ color: 'var(--accent)', fontFamily: 'var(--font-mono)' }}
             >
               End-of-Topic Checkpoint
             </p>
-            <SampleDataBadge />
           </div>
 
           <h2
             className="text-2xl sm:text-3xl font-bold mb-3 text-center"
-            style={{ fontFamily: 'var(--font-display)', color: 'var(--color-text-primary)' }}
+            style={{ fontFamily: 'var(--font-display)', color: 'var(--text)' }}
           >
             Cell Cycle &amp; Mitosis MCQ Quiz
           </h2>
 
           <p
             className="max-w-lg mb-8 text-center text-xs sm:text-sm"
-            style={{ color: 'var(--color-text-secondary)' }}
+            style={{ color: 'var(--text-2)' }}
           >
             Test your conceptual understanding of mitotic phases, ploidy count, and organelles.
           </p>
@@ -76,19 +74,19 @@ export function QuizView({ showHeader = true }: QuizViewProps) {
           return (
             <div
               key={q.id}
-              className="rounded-[12px] border p-5 backdrop-blur-sm"
+              className="rounded-[12px] border p-5 backdrop-blur-sm transition-colors"
               style={{
-                backgroundColor: 'rgba(14, 21, 38, 0.7)',
-                borderColor: 'var(--color-border)',
+                backgroundColor: 'var(--surface)',
+                borderColor: 'var(--border)',
               }}
             >
               <div className="flex items-center justify-between gap-2 mb-3">
                 <span
                   className="text-xs font-semibold px-2.5 py-0.5 rounded-full border font-mono"
                   style={{
-                    backgroundColor: 'rgba(79, 227, 200, 0.1)',
-                    borderColor: 'rgba(79, 227, 200, 0.3)',
-                    color: 'var(--color-teal)',
+                    backgroundColor: 'var(--tag-live-bg)',
+                    borderColor: 'var(--tag-live-border)',
+                    color: 'var(--tag-live-text)',
                   }}
                 >
                   Question {qIndex + 1} of {quizQuestions.length}
@@ -98,7 +96,7 @@ export function QuizView({ showHeader = true }: QuizViewProps) {
                   <span
                     className="text-xs font-semibold font-mono"
                     style={{
-                      color: isCorrect ? 'var(--color-success)' : 'var(--color-error)',
+                      color: isCorrect ? 'var(--tag-live-text)' : 'var(--tag-high-text)',
                     }}
                   >
                     {isCorrect ? '✓ Correct' : '✗ Incorrect'}
@@ -107,8 +105,8 @@ export function QuizView({ showHeader = true }: QuizViewProps) {
               </div>
 
               <h3
-                className="text-sm sm:text-base font-medium mb-4 leading-relaxed"
-                style={{ color: 'var(--color-text-primary)', fontFamily: 'var(--font-body)' }}
+                className="text-sm sm:text-base font-semibold mb-4 leading-relaxed"
+                style={{ color: 'var(--text)', fontFamily: 'var(--font-body)' }}
               >
                 {q.question}
               </h3>
@@ -118,23 +116,23 @@ export function QuizView({ showHeader = true }: QuizViewProps) {
                   const isSelected = userChoice === optIndex
                   const isOptionCorrect = optIndex === q.correctIndex
 
-                  let btnBg = 'rgba(7, 11, 20, 0.5)'
-                  let btnBorder = 'var(--color-border)'
-                  let btnText = 'var(--color-text-primary)'
+                  let btnBg = 'var(--surface-2)'
+                  let btnBorder = 'var(--border)'
+                  let btnText = 'var(--text)'
 
                   if (showResults) {
                     if (isOptionCorrect) {
-                      btnBg = 'rgba(79, 227, 200, 0.15)'
-                      btnBorder = 'var(--color-teal)'
-                      btnText = 'var(--color-teal)'
+                      btnBg = 'var(--tag-live-bg)'
+                      btnBorder = 'var(--tag-live-border)'
+                      btnText = 'var(--tag-live-text)'
                     } else if (isSelected && !isOptionCorrect) {
-                      btnBg = 'rgba(255, 122, 156, 0.15)'
-                      btnBorder = 'var(--color-rose)'
-                      btnText = 'var(--color-rose)'
+                      btnBg = 'var(--tag-high-bg)'
+                      btnBorder = 'var(--tag-high-border)'
+                      btnText = 'var(--tag-high-text)'
                     }
                   } else if (isSelected) {
-                    btnBg = 'rgba(79, 227, 200, 0.1)'
-                    btnBorder = 'var(--color-teal)'
+                    btnBg = 'var(--tag-live-bg)'
+                    btnBorder = 'var(--accent)'
                   }
 
                   return (
@@ -143,7 +141,7 @@ export function QuizView({ showHeader = true }: QuizViewProps) {
                       type="button"
                       onClick={() => !showResults && handleSelect(q.id, optIndex)}
                       disabled={showResults}
-                      className="w-full text-left p-3 rounded-[12px] border text-xs sm:text-sm font-medium transition-all flex items-start gap-3 focus-visible:ring-2 focus-visible:ring-[var(--color-teal)] outline-none min-h-[44px]"
+                      className="w-full text-left p-3 rounded-[12px] border text-xs sm:text-sm font-medium transition-all flex items-start gap-3 focus-visible:ring-2 focus-visible:ring-[var(--accent)] outline-none min-h-[44px]"
                       style={{
                         backgroundColor: btnBg,
                         borderColor: btnBorder,
@@ -153,9 +151,9 @@ export function QuizView({ showHeader = true }: QuizViewProps) {
                       <span
                         className="w-5 h-5 rounded-md border flex items-center justify-center text-xs font-mono font-bold shrink-0 mt-0.5"
                         style={{
-                          borderColor: isSelected || (showResults && isOptionCorrect) ? 'var(--color-teal)' : 'var(--color-border)',
-                          backgroundColor: isSelected || (showResults && isOptionCorrect) ? 'rgba(79, 227, 200, 0.2)' : 'transparent',
-                          color: showResults && isOptionCorrect ? 'var(--color-teal)' : 'var(--color-text-primary)',
+                          borderColor: isSelected || (showResults && isOptionCorrect) ? 'var(--accent)' : 'var(--border)',
+                          backgroundColor: isSelected || (showResults && isOptionCorrect) ? 'var(--tag-live-bg)' : 'var(--surface)',
+                          color: showResults && isOptionCorrect ? 'var(--tag-live-text)' : 'var(--text)',
                         }}
                       >
                         {String.fromCharCode(65 + optIndex)}
@@ -170,12 +168,12 @@ export function QuizView({ showHeader = true }: QuizViewProps) {
                 <div
                   className="mt-4 p-3 rounded-[12px] border text-xs leading-relaxed"
                   style={{
-                    backgroundColor: 'rgba(7, 11, 20, 0.8)',
-                    borderColor: 'var(--color-border)',
-                    color: 'var(--color-text-secondary)',
+                    backgroundColor: 'var(--surface-2)',
+                    borderColor: 'var(--border)',
+                    color: 'var(--text-2)',
                   }}
                 >
-                  <strong className="text-[var(--color-teal)] block mb-1 font-mono uppercase text-[11px]">
+                  <strong className="text-[var(--accent)] block mb-1 font-mono uppercase text-[11px]">
                     Explanation
                   </strong>
                   {q.explanation}
@@ -193,20 +191,20 @@ export function QuizView({ showHeader = true }: QuizViewProps) {
             <div
               className="p-4 rounded-[12px] border w-full text-center"
               style={{
-                backgroundColor: 'rgba(14, 21, 38, 0.8)',
-                borderColor: 'var(--color-border)',
+                backgroundColor: 'var(--surface)',
+                borderColor: 'var(--border)',
               }}
             >
               <p
                 className="text-lg font-bold"
                 style={{
                   fontFamily: 'var(--font-display)',
-                  color: score >= 4 ? 'var(--color-teal)' : 'var(--color-alert)',
+                  color: score >= 4 ? 'var(--tag-live-text)' : 'var(--tag-high-text)',
                 }}
               >
                 Your Score: {score} / {quizQuestions.length} correct
               </p>
-              <p className="text-xs text-[var(--color-text-secondary)] mt-1">
+              <p className="text-xs text-[var(--text-2)] mt-1">
                 {score >= 4
                   ? 'Excellent mastery of cell cycle concepts!'
                   : 'Review the high-yield revision cards and try again.'}

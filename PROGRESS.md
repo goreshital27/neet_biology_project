@@ -228,6 +228,51 @@
 
 ---
 
+## ✅ UI/UX Refinement: Theme Overhaul, Biology Background & Chapter Polish (Complete)
+
+**Date:** 2026-10-17
+
+### What was built
+1. **Motion Toggle Removal & Accessibility Standards**:
+   - Deleted the "Motion: ON/OFF" button from the navbar.
+   - Removed localStorage and state code for manual motion toggling.
+   - Wrapped all decorative and layout animations (`CellDivisionTransition`, `PyqOverlayCard`, `LivingCellBackground`) in `prefers-reduced-motion` checks using `usePrefersReducedMotion()` hook.
+   - When users specify reduced motion, animations stay completely static.
+
+2. **Complete Theme Overhaul & WCAG AA Contrast**:
+   - Replaced ad-hoc colors with unified CSS variables defined for `[data-theme="dark"]` and `[data-theme="light"]`:
+     - **Dark (default)**: `--bg: #0B1220; --surface: #111A2C; --surface-2: #172238; --border: #2A3A57; --text: #F1F5F9; --text-2: #B6C2D4; --text-muted: #8A99B0; --accent: #2DD4BF; --on-accent: #04201C;`
+     - **Light**: `--bg: #F6F8FB; --surface: #FFFFFF; --surface-2: #EEF2F7; --border: #D5DDE8; --text: #0F172A; --text-2: #44546A; --text-muted: #64748B; --accent: #0F766E; --on-accent: #FFFFFF;`
+   - Defined tinted tag variables (`--tag-high-*`, `--tag-med-*`, `--tag-low-*`, `--tag-live-*`, `--tag-soon-*`, `--tag-class-*`) with lighter text on dark backgrounds and darker text on light backgrounds for high contrast and readability.
+   - Adopted clean sans-serif typography (`Inter`) for headings and body; reserved monospace exclusively for tiny data labels and timestamps.
+   - `ThemeToggle` defaults to system preference (`window.matchMedia('(prefers-color-scheme: light)')`), switches the entire app dynamically, and persists to `localStorage`.
+
+3. **Visible & Biology-Themed Animated Background Layer**:
+   - Replaced faint background with a biology-themed layer fixed behind all content (`pointer-events: none`, `z-index: 0`):
+     - **10 translucent biological cells** (40px to 160px) in teal, violet, and coral with visible circular membranes, soft inner fills, and nucleus dots.
+     - **Mitosis dividing cell** with an animated cleavage furrow loop every 9s.
+     - **Rotating DNA double helix** with base-pair rungs in the corner.
+     - Soft radial mask leaving the center headline and card area calm.
+     - Theme-controlled opacity: 0.45 in dark mode and 0.32 in light mode.
+     - GPU-friendly CSS transforms and opacity only; pauses via `visibilitychange` when tab is inactive.
+
+4. **Chapter Page & Player Polish**:
+   - Generated genuine frame capture from `mitosis-lesson.mp4` as `public/videos/mitosis-poster.jpg` (replacing accidental page screenshot).
+   - Removed nested page elements from Animation tab: now contains ONLY the 16:9 video player, stage chips, and PYQ checkpoint panel beside it.
+   - Fixed breadcrumb navigation to stay cleanly on a single flex row (`Home / Class 11 / Cell: Structure & Functions / Cell Cycle and Cell Division`).
+   - Removed all instances of "Visuals generated with AI" and "Sample data" pills across views.
+
+### Verification
+- ✅ **Automated Browser Verification in Headless Edge**:
+  - Home Page (`/`) in dark & light themes: verified text contrast (AA compliant), no Motion button, 86 background SVG elements rendered.
+  - Chapter Page (`/chapter/cell-cycle-and-cell-division`) in dark & light themes: verified single-line breadcrumb, 16:9 rounded-16px player with mitosis poster, stage chips, PYQ panel, 0 pills, 0 console errors.
+- ✅ **TypeScript & Linting**:
+  - `npm run typecheck` (`tsc -b --noEmit`): 0 errors.
+  - `npm run lint` (`oxlint`): 0 warnings, 0 errors across 34 files.
+  - `npm run build`: Production bundle and data validation 100% passed.
+
+---
+
 ## 🔜 Next Steps: Slice 4
 - Three.js 3D interactive stages / GLB model exploration
 - Stage controller & camera rigs connecting to 3D models per NEET_PROJECT_SPEC.md §6

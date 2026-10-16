@@ -1,45 +1,42 @@
 import { Outlet, NavLink } from 'react-router-dom'
 import { ThemeToggle } from '../components/ThemeToggle'
-import { MotionToggle } from '../components/MotionToggle'
 import { LivingCellBackground } from '../components/LivingCellBackground/LivingCellBackground'
 import { CellDivisionTransition } from '../components/CellDivisionTransition'
 
 /**
  * Root layout:
- * - Living cell background canvas drifting behind all content (aria-hidden, pointer-events: none)
- * - Dark gradient overlay maintaining WCAG AA contrast over background
- * - Sticky header with navigation, accessible Motion toggle, and Theme toggle
+ * - Living cell background drifting behind all content (pointer-events: none, z-index: -1)
+ * - Sticky header with navigation and Theme toggle
  * - Biological cell division page transition on route change
  */
 export function RootLayout() {
   const navLinkClass = ({ isActive }: { isActive: boolean }) =>
-    `px-1.5 sm:px-3 py-1 sm:py-2 rounded-lg text-[11px] sm:text-sm font-medium transition-colors ` +
-    `hover:bg-[var(--color-bg-elevated)] ` +
+    `px-2 sm:px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-all ` +
     (isActive
-      ? 'text-[var(--color-teal)] font-semibold'
-      : 'text-[var(--color-text-secondary)]')
+      ? 'bg-[var(--surface-2)] text-[var(--accent)] font-semibold shadow-sm'
+      : 'text-[var(--text-2)] hover:text-[var(--text)] hover:bg-[var(--surface-2)]')
 
   return (
-    <div className="min-h-dvh flex flex-col relative text-[var(--color-text-primary)] w-full max-w-full overflow-x-hidden">
-      {/* ── Living Cell Canvas & Contrast Overlay (behind content) ── */}
+    <div className="min-h-dvh flex flex-col relative text-[var(--text)] bg-[var(--bg)] w-full max-w-full overflow-x-hidden">
+      {/* ── Living Cell Background (behind content) ── */}
       <LivingCellBackground chapterId="cell-cycle" />
 
-      {/* ── Header (above canvas) ── */}
+      {/* ── Header ── */}
       <header
-        className="sticky top-0 z-50 flex items-center justify-between px-2 sm:px-6 border-b backdrop-blur-md"
+        className="sticky top-0 z-50 flex items-center justify-between px-3 sm:px-6 border-b backdrop-blur-md transition-colors"
         style={{
           height: 'var(--header-height)',
-          backgroundColor: 'rgba(7, 11, 20, 0.82)',
-          borderColor: 'var(--color-border)',
+          backgroundColor: 'color-mix(in srgb, var(--surface) 88%, transparent)',
+          borderColor: 'var(--border)',
         }}
       >
         {/* Logo / title */}
         <NavLink
           to="/"
-          className="flex items-center gap-2.5 font-semibold shrink-0"
+          className="flex items-center gap-2.5 font-bold shrink-0 transition-opacity hover:opacity-90"
           style={{
             fontFamily: 'var(--font-display)',
-            color: 'var(--color-text-primary)',
+            color: 'var(--text)',
             fontSize: 'var(--text-lg)',
           }}
           aria-label="NEET Biology Studio home"
@@ -51,11 +48,11 @@ export function RootLayout() {
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            strokeWidth="2"
+            strokeWidth="2.2"
             strokeLinecap="round"
             strokeLinejoin="round"
             aria-hidden="true"
-            className="shrink-0 text-[var(--color-teal)]"
+            className="shrink-0 text-[var(--accent)]"
           >
             <path d="M2 15c6.667-6 13.333 0 20-6" />
             <path d="M9 22c1.798-1.998 2.518-3.995 2.807-5.993" />
@@ -69,11 +66,11 @@ export function RootLayout() {
             <path d="m16.5 10.5 1 1" />
             <path d="m10 16 1 1" />
           </svg>
-          <span className="hidden sm:inline tracking-tight">NEET Biology Studio</span>
+          <span className="hidden sm:inline tracking-tight font-bold">NEET Biology Studio</span>
           <span className="sm:hidden tracking-tight font-bold">NBS</span>
         </NavLink>
 
-        {/* Navigation & Controls */}
+        {/* Navigation & Theme Toggle */}
         <div className="flex items-center gap-1 sm:gap-2 max-w-[calc(100%-4rem)] sm:max-w-none">
           <nav
             className="flex items-center gap-0.5 sm:gap-1 overflow-x-auto scrollbar-none py-1"
@@ -94,14 +91,13 @@ export function RootLayout() {
             </NavLink>
           </nav>
 
-          <div className="flex items-center gap-1 pl-1 sm:pl-2 border-l border-[var(--color-border)] shrink-0">
-            <MotionToggle />
+          <div className="flex items-center pl-1 sm:pl-2 border-l border-[var(--border)] shrink-0">
             <ThemeToggle />
           </div>
         </div>
       </header>
 
-      {/* ── Main content (above canvas) ── */}
+      {/* ── Main content (above background) ── */}
       <main className="flex-1 relative z-10">
         <CellDivisionTransition>
           <Outlet />

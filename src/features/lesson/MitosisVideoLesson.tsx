@@ -2,7 +2,6 @@ import { useState, useRef, useEffect, useMemo, useCallback } from 'react'
 import { videos, questions as allQuestions } from '../../data'
 import type { StageTimestamp } from '../../data/syllabus'
 import { VideoPlayer } from './VideoPlayer'
-import { ChapterList } from './ChapterList'
 import { PyqOverlayCard } from './PyqOverlayCard'
 import { StageChips } from './StageChips'
 
@@ -259,13 +258,6 @@ export function MitosisVideoLesson({ posterUrl, stageChips }: MitosisVideoLesson
                     },
                   ]
             }
-            currentTime={currentTime}
-            duration={videoData.durationSec}
-            onSeek={handleSeek}
-          />
-
-          <ChapterList
-            chapters={videoData.chapters}
             currentTime={currentTime}
             duration={videoData.durationSec}
             onSeek={handleSeek}

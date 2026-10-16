@@ -9,7 +9,8 @@
     <title>NEET Biology Studio</title>
     <script>
       try {
-        var theme = localStorage.getItem('nbs-theme') || 'dark';
+        var stored = localStorage.getItem('nbs-theme');
+        var theme = stored || (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
         document.documentElement.classList.remove('light', 'dark');
         document.documentElement.classList.add(theme);
         document.documentElement.setAttribute('data-theme', theme);

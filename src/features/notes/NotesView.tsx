@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { SampleDataBadge } from '../../components/SampleDataBadge'
 import { revisionNotes } from '../../data'
 import { NeetAlertChip } from '../../components/NeetAlertChip'
 
@@ -14,7 +13,7 @@ export function NotesView({ showHeader = true }: NotesViewProps) {
     <div className="flex flex-col items-center justify-center w-full max-w-4xl mx-auto">
       {showHeader && (
         <>
-          <div className="p-3 rounded-2xl border mb-4 text-[var(--color-blue)] bg-[rgba(90,169,255,0.1)] border-[rgba(90,169,255,0.25)]">
+          <div className="p-3 rounded-2xl border mb-4 text-[var(--accent)] bg-[var(--tag-live-bg)] border-[var(--tag-live-border)]">
             <svg
               width="32"
               height="32"
@@ -37,23 +36,22 @@ export function NotesView({ showHeader = true }: NotesViewProps) {
           <div className="flex items-center gap-2 mb-2">
             <p
               className="text-xs font-semibold uppercase tracking-widest"
-              style={{ color: 'var(--color-blue)', fontFamily: 'var(--font-mono)' }}
+              style={{ color: 'var(--accent)', fontFamily: 'var(--font-mono)' }}
             >
               High-Yield Revision
             </p>
-            <SampleDataBadge />
           </div>
 
           <h2
             className="text-2xl sm:text-3xl font-bold mb-3 text-center"
-            style={{ fontFamily: 'var(--font-display)', color: 'var(--color-text-primary)' }}
+            style={{ fontFamily: 'var(--font-display)', color: 'var(--text)' }}
           >
             NCERT Revision Notes
           </h2>
 
           <p
             className="max-w-lg mb-6 text-center text-xs sm:text-sm"
-            style={{ color: 'var(--color-text-secondary)' }}
+            style={{ color: 'var(--text-2)' }}
           >
             Concise revision cards formatted for rapid pre-exam recall and key takeaways.
           </p>
@@ -61,15 +59,15 @@ export function NotesView({ showHeader = true }: NotesViewProps) {
       )}
 
       {/* 2-Minute Revision Mode Toggle */}
-      <div className="mb-6 flex items-center justify-between w-full flex-wrap gap-3 pb-3 border-b border-[var(--color-border)]">
+      <div className="mb-6 flex items-center justify-between w-full flex-wrap gap-3 pb-3 border-b border-[var(--border)]">
         <div>
           <span
             className="text-xs font-semibold uppercase tracking-wider block"
-            style={{ color: 'var(--color-text-primary)', fontFamily: 'var(--font-mono)' }}
+            style={{ color: 'var(--text)', fontFamily: 'var(--font-mono)' }}
           >
             Study Mode
           </span>
-          <span className="text-[11px]" style={{ color: 'var(--color-text-muted)' }}>
+          <span className="text-[11px]" style={{ color: 'var(--text-muted)' }}>
             {quickReviseMode ? 'Ultra-concise 2-minute exam summary' : 'Detailed key takeaways and exam alerts'}
           </span>
         </div>
@@ -77,16 +75,16 @@ export function NotesView({ showHeader = true }: NotesViewProps) {
         <button
           type="button"
           onClick={() => setQuickReviseMode((prev) => !prev)}
-          className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-[12px] text-xs font-semibold border transition-all focus-visible:ring-2 focus-visible:ring-[var(--color-teal)] outline-none min-h-[38px]"
+          className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-[12px] text-xs font-semibold border transition-all focus-visible:ring-2 focus-visible:ring-[var(--accent)] outline-none min-h-[38px]"
           style={{
-            backgroundColor: quickReviseMode ? 'rgba(79, 227, 200, 0.15)' : 'rgba(14, 21, 38, 0.6)',
-            borderColor: quickReviseMode ? 'var(--color-teal)' : 'var(--color-border)',
-            color: quickReviseMode ? 'var(--color-teal)' : 'var(--color-text-secondary)',
+            backgroundColor: quickReviseMode ? 'var(--tag-live-bg)' : 'var(--surface-2)',
+            borderColor: quickReviseMode ? 'var(--tag-live-border)' : 'var(--border)',
+            color: quickReviseMode ? 'var(--tag-live-text)' : 'var(--text-2)',
           }}
         >
           <span
             className="w-2 h-2 rounded-full"
-            style={{ backgroundColor: quickReviseMode ? 'var(--color-teal)' : 'var(--color-text-muted)' }}
+            style={{ backgroundColor: quickReviseMode ? 'var(--tag-live-text)' : 'var(--text-muted)' }}
             aria-hidden="true"
           />
           {quickReviseMode ? '2-Min Mode: Active' : 'Enable 2-Min Mode'}
@@ -100,15 +98,15 @@ export function NotesView({ showHeader = true }: NotesViewProps) {
             key={note.id}
             className="rounded-[12px] border p-5 flex flex-col justify-between transition-all backdrop-blur-sm"
             style={{
-              backgroundColor: 'rgba(14, 21, 38, 0.7)',
-              borderColor: 'var(--color-border)',
+              backgroundColor: 'var(--surface)',
+              borderColor: 'var(--border)',
             }}
           >
             <div>
-              <div className="flex items-center justify-between gap-2 mb-2 pb-2 border-b border-[var(--color-border)]">
+              <div className="flex items-center justify-between gap-2 mb-2 pb-2 border-b border-[var(--border)]">
                 <h3
                   className="text-sm sm:text-base font-semibold"
-                  style={{ color: 'var(--color-text-primary)', fontFamily: 'var(--font-display)' }}
+                  style={{ color: 'var(--text)', fontFamily: 'var(--font-display)' }}
                 >
                   {note.title}
                 </h3>
@@ -119,20 +117,20 @@ export function NotesView({ showHeader = true }: NotesViewProps) {
                 <div
                   className="p-3 rounded-[12px] border text-xs leading-relaxed my-2"
                   style={{
-                    backgroundColor: 'rgba(79, 227, 200, 0.08)',
-                    borderColor: 'rgba(79, 227, 200, 0.25)',
-                    color: 'var(--color-text-primary)',
+                    backgroundColor: 'var(--surface-2)',
+                    borderColor: 'var(--border)',
+                    color: 'var(--text)',
                   }}
                 >
                   <p className="font-medium">{note.quickReviseSummary}</p>
                 </div>
               ) : (
-                <ul className="space-y-2 mb-4 text-xs leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
+                <ul className="space-y-2 mb-4 text-xs leading-relaxed" style={{ color: 'var(--text-2)' }}>
                   {note.keyTakeaways.map((point, pIdx) => (
                     <li key={pIdx} className="flex items-start gap-2">
                       <span
                         className="w-1.5 h-1.5 rounded-full mt-1.5 shrink-0"
-                        style={{ backgroundColor: 'var(--color-teal)' }}
+                        style={{ backgroundColor: 'var(--accent)' }}
                         aria-hidden="true"
                       />
                       <span>{point}</span>
